@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970623527947",
+    "project_id": "propfinder-mad3",
+    "storage_bucket": "propfinder-mad3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970623527947:android:8f7fb0ad263b91d16dab0e",
+        "android_client_info": {
+          "package_name": "com.example.propfinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoxLqEWQQlrDhZaWJ8kcu_GLgwAOMxWf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
