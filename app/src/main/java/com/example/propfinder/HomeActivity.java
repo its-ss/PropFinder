@@ -9,17 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +24,23 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView propertyList;
     private PropertyAdapter propertyAdapter;
     private List<Property> properties;
-    private List<Property> filteredProperties; // New list to hold filtered properties
+    private List<Property> filteredProperties; // List to hold filtered properties
     private ImageView filterIcon;
     private ImageView profileImageView;
-    private EditText searchEditText; // Add this line
-    private static final int REQUEST_FILTER_CODE = 1; // or any unique integer
+    private EditText searchEditText; // Search EditText
+    private static final int REQUEST_FILTER_CODE = 1; // Unique integer for filter request
 
     // Firestore instance
     private FirebaseFirestore db;
 
     // ToggleButtons for Buy, Rent, PG, Plot
     private ToggleButton buttonBuy, buttonRent, buttonPG, buttonPlot;
+
+    // Filter variables
+    private String selectedPropertyType = "";
+    private String selectedHouseType = "";
+    private String selectedBedroom = "";
+    private int selectedPrice = 0; // Store the selected price
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         propertyList.setLayoutManager(new LinearLayoutManager(this));
         propertyList.setAdapter(propertyAdapter);
 
-        // Set onClickListener for each ToggleButton and pass the buttons to be managed
+        // Set onClickListener for each ToggleButton
         setToggleButtonBehavior(buttonBuy, buttonRent, buttonPG, buttonPlot);
         setToggleButtonBehavior(buttonRent, buttonBuy, buttonPG, buttonPlot);
         setToggleButtonBehavior(buttonPG, buttonBuy, buttonRent, buttonPlot);
@@ -73,9 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         searchEditText = findViewById(R.id.searchEditText); // Initialize the search EditText
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No action needed here
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -83,9 +82,7 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                // No action needed here
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
         // Find the filter icon and set an OnClickListener
@@ -94,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
-                startActivityForResult(intent, REQUEST_FILTER_CODE); // Use this for starting the activity for result
+                startActivityForResult(intent, REQUEST_FILTER_CODE); // Start the filter activity for result
             }
         });
 
@@ -131,7 +128,7 @@ public class HomeActivity extends AppCompatActivity {
 
                             // Check if any toggle button is selected
                             if (isPropertyVisible(property)) {
-                                properties.add(property);  // Add each property to the list
+                                properties.add(property); // Add each property to the list
                                 Log.d("PropertyDetails", "Property: " + property.getPropertyName());
                             }
                         }
@@ -184,6 +181,57 @@ public class HomeActivity extends AppCompatActivity {
                         property.getLocation().toLowerCase().contains(query.toLowerCase())) {
                     filteredProperties.add(property);
                 }
+            }
+        }
+        propertyAdapter.notifyDataSetChanged(); // Notify the adapter about data change
+    }
+
+    // Handle the result from FilterActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_FILTER_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                // Get filter selections from the Intent
+                selectedPropertyType = data.getStringExtra("selectedPropertyType");
+                selectedHouseType = data.getStringExtra("selectedHouseType");
+                selectedBedroom = data.getStringExtra("selectedBedroom");
+                selectedPrice = data.getIntExtra("selectedPrice", 0);
+
+                // Reapply filters
+                applyFilters();
+            }
+        }
+    }
+
+    private void applyFilters() {
+        filteredProperties.clear(); // Clear the current filtered list
+        for (Property property : properties) {
+            // Check if the property matches the selected filters
+            boolean matchesFilters = true;
+
+            // Check property type
+            if (!selectedPropertyType.isEmpty() && !property.getType().equalsIgnoreCase(selectedPropertyType)) {
+                matchesFilters = false;
+            }
+
+            // Check house type
+            if (!selectedHouseType.isEmpty() && !property.getCategory().equalsIgnoreCase(selectedHouseType)) {
+                matchesFilters = false;
+            }
+
+            // Check bedroom count
+            if (!selectedBedroom.isEmpty() && property.getBedroomType() != Integer.parseInt(selectedBedroom.split(" ")[0])) {
+                matchesFilters = false;
+            }
+
+            // Check price
+            if (selectedPrice > 0 && property.getPrice() > selectedPrice) {
+                matchesFilters = false;
+            }
+
+            if (matchesFilters) {
+                filteredProperties.add(property); // Add matching property to filtered list
             }
         }
         propertyAdapter.notifyDataSetChanged(); // Notify the adapter about data change

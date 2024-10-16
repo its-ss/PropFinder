@@ -1,5 +1,6 @@
 package com.example.propfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,12 +45,7 @@ public class FilterActivity extends AppCompatActivity {
 
         // Back button handling
         ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed(); // Navigate back when the back button is pressed
-            }
-        });
+        backButton.setOnClickListener(v -> onBackPressed()); // Navigate back when the back button is pressed
 
         // Initialize UI components
         buyButton = findViewById(R.id.buyButton);
@@ -68,8 +64,6 @@ public class FilterActivity extends AppCompatActivity {
 
         submitButton = findViewById(R.id.submitButton);
         priceRange = findViewById(R.id.priceRange);
-
-        // Corrected initialization of priceText
         priceText = findViewById(R.id.priceValue);
 
         // Set SeekBar max to the number of price steps minus 1
@@ -79,10 +73,7 @@ public class FilterActivity extends AppCompatActivity {
         priceRange.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Get the price from the priceSteps array based on SeekBar progress
                 selectedPrice = priceSteps[progress];
-
-                // Update the price TextView with formatted price
                 priceText.setText("Selected Price: ₹" + formatPrice(selectedPrice));
             }
 
@@ -109,62 +100,46 @@ public class FilterActivity extends AppCompatActivity {
         setFilterClickListener(fourBhkButton, "Bedroom");
 
         // Submit button logic
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Ensure all fields are filled before proceeding
-                if (selectedPropertyType.isEmpty() || selectedHouseType.isEmpty() || selectedBedroom.isEmpty() || selectedPrice == 0) {
-                    // Show toast if any required field is missing
-                    Toast.makeText(FilterActivity.this, "Please select all options.", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Show toast with all selected data if everything is filled
-                    String message = "Selected: Property Type: " + selectedPropertyType +
-                            ", House Type: " + selectedHouseType +
-                            ", Bedroom: " + selectedBedroom +
-                            ", Price: ₹" + formatPrice(selectedPrice);
-                    Toast.makeText(FilterActivity.this, message, Toast.LENGTH_LONG).show();
-                }
-            }
+        submitButton.setOnClickListener(v -> {
+            // Create an Intent to send data back to HomeActivity
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("selectedPropertyType", selectedPropertyType);
+            resultIntent.putExtra("selectedHouseType", selectedHouseType);
+            resultIntent.putExtra("selectedBedroom", selectedBedroom);
+            resultIntent.putExtra("selectedPrice", selectedPrice);
+            setResult(RESULT_OK, resultIntent);
+            finish(); // Close the activity and return to HomeActivity
         });
     }
 
     // Method to set OnClickListener and update selection based on category
     private void setFilterClickListener(final ToggleButton button, final String category) {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (button.isChecked()) {
-                    // Deselect all buttons in the category to ensure only one is selected at a time
-                    deselectAllButtons(category);
+        button.setOnClickListener(v -> {
+            if (button.isChecked()) {
+                deselectAllButtons(category);
+                button.setChecked(true);
+                button.setBackgroundResource(R.color.button_selected_color);
+                button.setTextColor(getResources().getColor(R.color.white));
 
-                    // Select the clicked button
-                    button.setChecked(true);
-                    button.setBackgroundResource(R.color.button_selected_color); // Set selected background
-                    button.setTextColor(getResources().getColor(R.color.white)); // Set text color to white
-
-                    // Update the respective selection
-                    String selectedOption = button.getText().toString();
-                    switch (category) {
-                        case "PropertyType":
-                            selectedPropertyType = selectedOption;
-                            break;
-                        case "HouseType":
-                            selectedHouseType = selectedOption;
-                            break;
-                        case "Bedroom":
-                            selectedBedroom = selectedOption;
-                            break;
-                    }
-                } else {
-                    // Deselect the button if unselected
-                    button.setBackgroundResource(R.drawable.button_selector); // Revert to default background (transparent)
-                    button.setTextColor(getResources().getColor(R.color.black)); // Revert to default text color
+                String selectedOption = button.getText().toString();
+                switch (category) {
+                    case "PropertyType":
+                        selectedPropertyType = selectedOption;
+                        break;
+                    case "HouseType":
+                        selectedHouseType = selectedOption;
+                        break;
+                    case "Bedroom":
+                        selectedBedroom = selectedOption;
+                        break;
                 }
+            } else {
+                button.setBackgroundResource(R.drawable.button_selector);
+                button.setTextColor(getResources().getColor(R.color.black));
             }
         });
     }
 
-    // Deselect all buttons in the given category
     private void deselectAllButtons(String category) {
         switch (category) {
             case "PropertyType":
@@ -189,14 +164,12 @@ public class FilterActivity extends AppCompatActivity {
         }
     }
 
-    // Helper function to reset ToggleButton state
     private void resetToggleButton(ToggleButton button) {
         button.setChecked(false);
         button.setBackgroundResource(R.drawable.button_selector);
         button.setTextColor(getResources().getColor(R.color.black));
     }
 
-    // Helper function to format the price as a string (k for thousands, L for lakhs, Cr for crores)
     private String formatPrice(int price) {
         if (price >= 10000000) {
             return (price / 10000000) + " Cr";
@@ -209,3 +182,11 @@ public class FilterActivity extends AppCompatActivity {
         }
     }
 }
+
+
+//its working but some bugs are there resolve it
+//1. After filtering and showing data I want n click of Home nav button it will reset all the filter and show all properties
+//
+//2. The search location feature isnt working for Filter Activity
+//
+//3.

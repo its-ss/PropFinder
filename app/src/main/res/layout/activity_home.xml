@@ -104,11 +104,13 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
+            
+
             <ToggleButton
                 android:id="@+id/buttonBuy"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textOff="Buy"
                 android:textOn="Buy"
                 android:background="@drawable/button_selector" />
@@ -117,7 +119,7 @@
                 android:id="@+id/buttonRent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textOff="Rent"
                 android:textOn="Rent"
                 android:background="@drawable/button_selector" />
@@ -126,7 +128,7 @@
                 android:id="@+id/buttonPG"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textOff="PG"
                 android:textOn="PG"
                 android:background="@drawable/button_selector" />
@@ -135,7 +137,7 @@
                 android:id="@+id/buttonPlot"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textOff="Plot"
                 android:textOn="Plot"
                 android:background="@drawable/button_selector" />
