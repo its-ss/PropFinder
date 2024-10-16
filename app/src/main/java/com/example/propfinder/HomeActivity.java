@@ -10,10 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -235,12 +237,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         propertyAdapter.notifyDataSetChanged(); // Notify the adapter about data change
+
+        // Update ToggleButton UI after applying filters
+        updateToggleButtonUI();
+
         if (filteredProperties.isEmpty()) {
             Toast.makeText(this, "No properties match the selected filters.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    // Method to set ToggleButton behavior for selection/deselection with mutual exclusivity
     // Method to set ToggleButton behavior for selection/deselection with mutual exclusivity
     private void setToggleButtonBehavior(final ToggleButton selectedButton, final ToggleButton... otherButtons) {
         selectedButton.setOnClickListener(v -> {
@@ -249,7 +254,6 @@ public class HomeActivity extends AppCompatActivity {
                 if (!buttonAll.isChecked()) {
                     buttonAll.setChecked(true); // Force it to stay selected
                 }
-                // Display all properties and deselect all other buttons
                 deselectOtherButtons(otherButtons);
                 fetchPropertiesRealtime(); // Fetch and display all properties
             } else {
@@ -257,22 +261,18 @@ public class HomeActivity extends AppCompatActivity {
                     // When a specific button is selected, deselect the "All" button and other buttons
                     buttonAll.setChecked(false);
                     deselectOtherButtons(otherButtons);
-
-                    // Highlight the selected button
-                    selectedButton.setBackgroundResource(R.color.purple_700);
-                    selectedButton.setTextColor(getResources().getColor(android.R.color.white));
-
-                    // Refresh properties based on the selected type
                     fetchPropertiesRealtime();
                 } else {
                     // When any specific button is deselected, select "All" button again
                     buttonAll.setChecked(true);
-                    updateToggleButtonUI();
+                    updateToggleButtonUI(); // Update UI for all buttons
                     fetchPropertiesRealtime(); // Reload all properties
                 }
             }
+            updateToggleButtonUI(); // Always update UI after any button click
         });
     }
+
 
     private void deselectOtherButtons(ToggleButton... buttons) {
         // Loop through and deselect the other toggle buttons
@@ -293,6 +293,7 @@ public class HomeActivity extends AppCompatActivity {
             buttonAll.setTextColor(getResources().getColor(android.R.color.black));
         }
 
+        // Repeat for other buttons...
         if (buttonBuy.isChecked()) {
             buttonBuy.setBackgroundResource(R.color.purple_700);
             buttonBuy.setTextColor(getResources().getColor(android.R.color.white));
@@ -326,4 +327,14 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+
+    private void updateButtonUI(ToggleButton button) {
+        if (button.isChecked()) {
+            button.setBackgroundResource(R.color.purple_700);
+            button.setTextColor(getResources().getColor(android.R.color.white));
+        } else {
+            button.setBackgroundResource(android.R.color.transparent);
+            button.setTextColor(getResources().getColor(android.R.color.black));
+        }
+    }
 }
