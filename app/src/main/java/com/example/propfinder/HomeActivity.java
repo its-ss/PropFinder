@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +34,8 @@ public class HomeActivity extends AppCompatActivity {
     // Firestore instance
     private FirebaseFirestore db;
 
-    // ToggleButtons for Buy, Rent, PG, Plot
-    private ToggleButton buttonBuy, buttonRent, buttonPG, buttonPlot;
+    // ToggleButtons for property types
+    private ToggleButton buttonAll, buttonBuy, buttonRent, buttonPG, buttonPlot;
 
     // Filter variables
     private String selectedPropertyType = "";
@@ -51,10 +52,15 @@ public class HomeActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         // Initialize ToggleButtons
+        buttonAll = findViewById(R.id.buttonAll);
         buttonBuy = findViewById(R.id.buttonBuy);
         buttonRent = findViewById(R.id.buttonRent);
         buttonPG = findViewById(R.id.buttonPG);
         buttonPlot = findViewById(R.id.buttonPlot);
+
+        // Set the "All" button to checked by default
+        buttonAll.setChecked(true);
+        updateToggleButtonUI(); // Update the UI for selected buttons
 
         // Initialize the property list
         properties = new ArrayList<>();
@@ -65,10 +71,11 @@ public class HomeActivity extends AppCompatActivity {
         propertyList.setAdapter(propertyAdapter);
 
         // Set onClickListener for each ToggleButton
-        setToggleButtonBehavior(buttonBuy, buttonRent, buttonPG, buttonPlot);
-        setToggleButtonBehavior(buttonRent, buttonBuy, buttonPG, buttonPlot);
-        setToggleButtonBehavior(buttonPG, buttonBuy, buttonRent, buttonPlot);
-        setToggleButtonBehavior(buttonPlot, buttonBuy, buttonRent, buttonPG);
+        setToggleButtonBehavior(buttonAll, buttonBuy, buttonRent, buttonPG, buttonPlot);
+        setToggleButtonBehavior(buttonBuy, buttonAll, buttonRent, buttonPG, buttonPlot);
+        setToggleButtonBehavior(buttonRent, buttonAll, buttonBuy, buttonPG, buttonPlot);
+        setToggleButtonBehavior(buttonPG, buttonAll, buttonBuy, buttonRent, buttonPlot);
+        setToggleButtonBehavior(buttonPlot, buttonAll, buttonBuy, buttonRent, buttonPG);
 
         // Initialize the EditText for search
         searchEditText = findViewById(R.id.searchEditText); // Initialize the search EditText
@@ -87,22 +94,16 @@ public class HomeActivity extends AppCompatActivity {
 
         // Find the filter icon and set an OnClickListener
         filterIcon = findViewById(R.id.filterIcon);
-        filterIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
-                startActivityForResult(intent, REQUEST_FILTER_CODE); // Start the filter activity for result
-            }
+        filterIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
+            startActivityForResult(intent, REQUEST_FILTER_CODE); // Start the filter activity for result
         });
 
         // Find the profile ImageView and set an OnClickListener
         profileImageView = findViewById(R.id.ic_profile);
-        profileImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
+        profileImageView.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+            startActivity(intent);
         });
 
         // Fetch properties using Firestore Realtime Listener
@@ -114,6 +115,7 @@ public class HomeActivity extends AppCompatActivity {
                 .addSnapshotListener((value, e) -> {
                     if (e != null) {
                         Log.w("FirestoreError", "Listen failed.", e);
+                        Toast.makeText(HomeActivity.this, "Failed to fetch properties.", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -139,34 +141,29 @@ public class HomeActivity extends AppCompatActivity {
                         propertyAdapter.notifyDataSetChanged();
                     } else {
                         Log.d("FirestoreEmpty", "No documents found.");
+                        Toast.makeText(HomeActivity.this, "No properties found.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private boolean isPropertyVisible(Property property) {
         // Check if any toggle button is checked
+        boolean isAllChecked = buttonAll.isChecked();
         boolean isBuyChecked = buttonBuy.isChecked();
         boolean isRentChecked = buttonRent.isChecked();
         boolean isPGChecked = buttonPG.isChecked();
         boolean isPlotChecked = buttonPlot.isChecked();
 
-        // If no button is checked, show all properties
-        if (!isBuyChecked && !isRentChecked && !isPGChecked && !isPlotChecked) {
+        // If "All" button is checked, show all properties
+        if (isAllChecked) {
             return true; // Show all properties
         }
 
         // Filter based on the selected toggle buttons
-        if (isBuyChecked && property.getType().equalsIgnoreCase("Buy")) {
-            return true;
-        } else if (isRentChecked && property.getType().equalsIgnoreCase("Rent")) {
-            return true;
-        } else if (isPGChecked && property.getType().equalsIgnoreCase("PG")) {
-            return true;
-        } else if (isPlotChecked && property.getType().equalsIgnoreCase("Plot")) {
-            return true;
-        }
-
-        return false; // If no button is selected or property doesn't match, don't display it
+        return (isBuyChecked && property.getType().equalsIgnoreCase("Buy")) ||
+                (isRentChecked && property.getType().equalsIgnoreCase("Rent")) ||
+                (isPGChecked && property.getType().equalsIgnoreCase("PG")) ||
+                (isPlotChecked && property.getType().equalsIgnoreCase("Plot"));
     }
 
     private void filterProperties(String query) {
@@ -184,6 +181,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         propertyAdapter.notifyDataSetChanged(); // Notify the adapter about data change
+        if (filteredProperties.isEmpty()) {
+            Toast.makeText(this, "No matching properties found.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Handle the result from FilterActivity
@@ -235,31 +235,95 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         propertyAdapter.notifyDataSetChanged(); // Notify the adapter about data change
+        if (filteredProperties.isEmpty()) {
+            Toast.makeText(this, "No properties match the selected filters.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // Method to set ToggleButton behavior for selection/deselection with mutual exclusivity
+    // Method to set ToggleButton behavior for selection/deselection with mutual exclusivity
     private void setToggleButtonBehavior(final ToggleButton selectedButton, final ToggleButton... otherButtons) {
-        selectedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        selectedButton.setOnClickListener(v -> {
+            if (selectedButton == buttonAll) {
+                // Ensure "All" button is non-deselectable
+                if (!buttonAll.isChecked()) {
+                    buttonAll.setChecked(true); // Force it to stay selected
+                }
+                // Display all properties and deselect all other buttons
+                deselectOtherButtons(otherButtons);
+                fetchPropertiesRealtime(); // Fetch and display all properties
+            } else {
                 if (selectedButton.isChecked()) {
-                    // Deselect all other buttons
-                    for (ToggleButton button : otherButtons) {
-                        button.setChecked(false);
-                        button.setBackgroundResource(android.R.color.transparent);
-                        button.setTextColor(getResources().getColor(android.R.color.black));
-                    }
+                    // When a specific button is selected, deselect the "All" button and other buttons
+                    buttonAll.setChecked(false);
+                    deselectOtherButtons(otherButtons);
 
-                    // Change background to purple and text color to white when selected
+                    // Highlight the selected button
                     selectedButton.setBackgroundResource(R.color.purple_700);
                     selectedButton.setTextColor(getResources().getColor(android.R.color.white));
+
+                    // Refresh properties based on the selected type
+                    fetchPropertiesRealtime();
                 } else {
-                    // Revert to transparent background and black text when deselected
-                    selectedButton.setBackgroundResource(android.R.color.transparent);
-                    selectedButton.setTextColor(getResources().getColor(android.R.color.black));
+                    // When any specific button is deselected, select "All" button again
+                    buttonAll.setChecked(true);
+                    updateToggleButtonUI();
+                    fetchPropertiesRealtime(); // Reload all properties
                 }
-                fetchPropertiesRealtime(); // Refresh properties based on the selected type
             }
         });
     }
+
+    private void deselectOtherButtons(ToggleButton... buttons) {
+        // Loop through and deselect the other toggle buttons
+        for (ToggleButton button : buttons) {
+            button.setChecked(false);
+            button.setBackgroundResource(android.R.color.transparent);
+            button.setTextColor(getResources().getColor(android.R.color.black));
+        }
+    }
+
+    private void updateToggleButtonUI() {
+        // Update the UI for each ToggleButton based on its checked state
+        if (buttonAll.isChecked()) {
+            buttonAll.setBackgroundResource(R.color.purple_700);
+            buttonAll.setTextColor(getResources().getColor(android.R.color.white));
+        } else {
+            buttonAll.setBackgroundResource(android.R.color.transparent);
+            buttonAll.setTextColor(getResources().getColor(android.R.color.black));
+        }
+
+        if (buttonBuy.isChecked()) {
+            buttonBuy.setBackgroundResource(R.color.purple_700);
+            buttonBuy.setTextColor(getResources().getColor(android.R.color.white));
+        } else {
+            buttonBuy.setBackgroundResource(android.R.color.transparent);
+            buttonBuy.setTextColor(getResources().getColor(android.R.color.black));
+        }
+
+        if (buttonRent.isChecked()) {
+            buttonRent.setBackgroundResource(R.color.purple_700);
+            buttonRent.setTextColor(getResources().getColor(android.R.color.white));
+        } else {
+            buttonRent.setBackgroundResource(android.R.color.transparent);
+            buttonRent.setTextColor(getResources().getColor(android.R.color.black));
+        }
+
+        if (buttonPG.isChecked()) {
+            buttonPG.setBackgroundResource(R.color.purple_700);
+            buttonPG.setTextColor(getResources().getColor(android.R.color.white));
+        } else {
+            buttonPG.setBackgroundResource(android.R.color.transparent);
+            buttonPG.setTextColor(getResources().getColor(android.R.color.black));
+        }
+
+        if (buttonPlot.isChecked()) {
+            buttonPlot.setBackgroundResource(R.color.purple_700);
+            buttonPlot.setTextColor(getResources().getColor(android.R.color.white));
+        } else {
+            buttonPlot.setBackgroundResource(android.R.color.transparent);
+            buttonPlot.setTextColor(getResources().getColor(android.R.color.black));
+        }
+    }
+
 }

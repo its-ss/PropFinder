@@ -104,7 +104,14 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
-            
+            <ToggleButton
+                android:id="@+id/buttonAll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textOff="All"
+                android:textOn="All"
+                android:background="@drawable/button_selector" />
 
             <ToggleButton
                 android:id="@+id/buttonBuy"

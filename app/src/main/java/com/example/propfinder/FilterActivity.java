@@ -182,11 +182,3 @@ public class FilterActivity extends AppCompatActivity {
         }
     }
 }
-
-
-//its working but some bugs are there resolve it
-//1. After filtering and showing data I want n click of Home nav button it will reset all the filter and show all properties
-//
-//2. The search location feature isnt working for Filter Activity
-//
-//3.
