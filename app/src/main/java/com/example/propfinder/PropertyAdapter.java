@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder> {
@@ -32,11 +34,17 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     @Override
     public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
         Property property = propertyList.get(position);
-        holder.bedroomText.setText(property.getBedrooms());
+
+        holder.bedroomText.setText(property.getBedroomType() + " BHK");
         holder.locationText.setText(property.getLocation());
-        holder.priceText.setText(property.getPrice());
-        // Load image from resource or URL here, using a library like Glide or Picasso
-        // Glide.with(context).load(property.getImage()).into(holder.propertyImage);
+        holder.priceText.setText("₹" + property.getPrice());
+        holder.propertyNameText.setText(property.getPropertyName()); // Set property name
+
+        // Load image using Glide
+        Glide.with(context)
+                .load(property.getImageUrl())
+                .placeholder(R.drawable.ic_property_image)
+                .into(holder.propertyImage);
     }
 
     @Override
@@ -49,6 +57,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         TextView bedroomText;
         TextView locationText;
         TextView priceText;
+        TextView propertyNameText; // Add this line for the property name
 
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +65,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             bedroomText = itemView.findViewById(R.id.bedroomText);
             locationText = itemView.findViewById(R.id.locationText);
             priceText = itemView.findViewById(R.id.priceText);
+            propertyNameText = itemView.findViewById(R.id.propertyNameText); // Initialize property name
         }
     }
 }

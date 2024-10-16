@@ -1,31 +1,63 @@
 package com.example.propfinder;
 
 public class Property {
-    private String image;
-    private String bedrooms;
+    private String imageUrl;
+    private String propertyName;
     private String location;
-    private String price;
+    private int price;  // Change price to String
+    private int bedroomType;
+    private String type;  // Add this line for the property type
+    private String category; // Add this line if not already present
+    private String description; // Add this line if not already present
+    private int bathrooms; // Add this line if not already present
+    private int balconies; // Add this line if not already present
+    private int carpetArea; // Add this line if not already present
 
-    public Property(String image, String bedrooms, String location, String price) {
-        this.image = image;
-        this.bedrooms = bedrooms;
-        this.location = location;
-        this.price = price;
+    // Empty constructor for Firestore
+    public Property() {}
+
+    // Getters
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public String getBedrooms() {
-        return bedrooms;
+    public String getPropertyName() {
+        return propertyName;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public String getPrice() {
-        return price;
+    public int getPrice() {
+        return price;  // Return as String
+    }
+
+    public int getBedroomType() {
+        return bedroomType;
+    }
+
+    public String getType() { // Add this method
+        return type;
+    }
+
+    public String getCategory() { // Add this method
+        return category;
+    }
+
+    public String getDescription() { // Add this method
+        return description;
+    }
+
+    public int getBathrooms() { // Add this method
+        return bathrooms;
+    }
+
+    public int getBalconies() { // Add this method
+        return balconies;
+    }
+
+    public int getCarpetArea() { // Add this method
+        return carpetArea;
     }
 }

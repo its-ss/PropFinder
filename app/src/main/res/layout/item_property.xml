@@ -30,6 +30,16 @@
 
         </RelativeLayout>
 
+        <!-- Property Name Section -->
+        <TextView
+            android:id="@+id/propertyNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Luxury Apartment"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:padding="8dp" />
+
         <!-- Bottom Section: Info Row -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +66,7 @@
                     android:id="@+id/bedroomText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3BKH"
+                    android:text="3BHK"
                     android:textSize="16sp"
                     android:layout_marginStart="4dp"/>
             </LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.propfinder;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,16 +7,16 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class FilterActivity extends AppCompatActivity {
 
-    private ImageButton backButton;
-    private Button buyButton, rentButton, pgButton, plotButton;
-    private Button apartmentButton, villaButton, independentHouseButton;
-    private Button oneBhkButton, twoBhkButton, threeBhkButton, fourBhkButton;
+    private ToggleButton buyButton, rentButton, pgButton, plotButton;
+    private ToggleButton apartmentButton, villaButton, independentHouseButton;
+    private ToggleButton oneBhkButton, twoBhkButton, threeBhkButton, fourBhkButton;
     private Button submitButton;
     private SeekBar priceRange;
     private TextView priceText;
@@ -51,8 +50,8 @@ public class FilterActivity extends AppCompatActivity {
                 onBackPressed(); // Navigate back when the back button is pressed
             }
         });
+
         // Initialize UI components
-        backButton = findViewById(R.id.backButton);
         buyButton = findViewById(R.id.buyButton);
         rentButton = findViewById(R.id.rentButton);
         pgButton = findViewById(R.id.pgButton);
@@ -94,7 +93,7 @@ public class FilterActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        // Set listeners for buttons to capture the selection
+        // Set listeners for toggle buttons to capture the selection
         setFilterClickListener(buyButton, "PropertyType");
         setFilterClickListener(rentButton, "PropertyType");
         setFilterClickListener(pgButton, "PropertyType");
@@ -130,26 +129,71 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     // Method to set OnClickListener and update selection based on category
-    private void setFilterClickListener(Button button, final String category) {
+    private void setFilterClickListener(final ToggleButton button, final String category) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selectedOption = button.getText().toString();
+                if (button.isChecked()) {
+                    // Deselect all buttons in the category to ensure only one is selected at a time
+                    deselectAllButtons(category);
 
-                // Update the respective selection
-                switch (category) {
-                    case "PropertyType":
-                        selectedPropertyType = selectedOption;
-                        break;
-                    case "HouseType":
-                        selectedHouseType = selectedOption;
-                        break;
-                    case "Bedroom":
-                        selectedBedroom = selectedOption;
-                        break;
+                    // Select the clicked button
+                    button.setChecked(true);
+                    button.setBackgroundResource(R.color.button_selected_color); // Set selected background
+                    button.setTextColor(getResources().getColor(R.color.white)); // Set text color to white
+
+                    // Update the respective selection
+                    String selectedOption = button.getText().toString();
+                    switch (category) {
+                        case "PropertyType":
+                            selectedPropertyType = selectedOption;
+                            break;
+                        case "HouseType":
+                            selectedHouseType = selectedOption;
+                            break;
+                        case "Bedroom":
+                            selectedBedroom = selectedOption;
+                            break;
+                    }
+                } else {
+                    // Deselect the button if unselected
+                    button.setBackgroundResource(R.drawable.button_selector); // Revert to default background (transparent)
+                    button.setTextColor(getResources().getColor(R.color.black)); // Revert to default text color
                 }
             }
         });
+    }
+
+    // Deselect all buttons in the given category
+    private void deselectAllButtons(String category) {
+        switch (category) {
+            case "PropertyType":
+                resetToggleButton(buyButton);
+                resetToggleButton(rentButton);
+                resetToggleButton(pgButton);
+                resetToggleButton(plotButton);
+                break;
+
+            case "HouseType":
+                resetToggleButton(apartmentButton);
+                resetToggleButton(villaButton);
+                resetToggleButton(independentHouseButton);
+                break;
+
+            case "Bedroom":
+                resetToggleButton(oneBhkButton);
+                resetToggleButton(twoBhkButton);
+                resetToggleButton(threeBhkButton);
+                resetToggleButton(fourBhkButton);
+                break;
+        }
+    }
+
+    // Helper function to reset ToggleButton state
+    private void resetToggleButton(ToggleButton button) {
+        button.setChecked(false);
+        button.setBackgroundResource(R.drawable.button_selector);
+        button.setTextColor(getResources().getColor(R.color.black));
     }
 
     // Helper function to format the price as a string (k for thousands, L for lakhs, Cr for crores)

@@ -31,127 +31,171 @@
         android:layout_below="@id/toolbar"
         android:padding="10dp" />
 
+    <!-- No heading for Buy, Rent, PG, Plot -->
     <LinearLayout
         android:id="@+id/filterOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/searchField"
+        android:weightSum="4"
         android:padding="10dp">
 
-        <Button
+        <ToggleButton
             android:id="@+id/buyButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Buy"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="Buy"
+            android:textOn="Buy"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/rentButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Rent"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="Rent"
+            android:textOn="Rent"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/pgButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="PG"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="PG"
+            android:textOn="PG"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/plotButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Plot"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="Plot"
+            android:textOn="Plot"
+            android:background="@drawable/button_selector" />
     </LinearLayout>
+
+    <!-- Property Type Heading -->
+    <TextView
+        android:id="@+id/propertyTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property Category"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/filterOptions"
+        android:layout_marginTop="10dp"
+        android:padding="10dp" />
 
     <LinearLayout
         android:id="@+id/houseTypeOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/filterOptions"
+        android:layout_below="@id/propertyTypeLabel"
+        android:weightSum="3"
         android:layout_marginTop="10dp"
         android:padding="10dp">
 
-        <Button
+        <ToggleButton
             android:id="@+id/apartmentButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Apartment"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="Apartment"
+            android:textOn="Apartment"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/villaButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Villa"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="Villa"
+            android:textOn="Villa"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/independentHouseButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Independent House"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
+            android:layout_weight="1"
+            android:textOff="Independent House"
+            android:textOn="Independent House"
+            android:background="@drawable/button_selector" />
     </LinearLayout>
+
+    <!-- Bedroom Heading -->
+    <TextView
+        android:id="@+id/bedroomLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bedroom"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/houseTypeOptions"
+        android:layout_marginTop="10dp"
+        android:padding="10dp" />
 
     <LinearLayout
         android:id="@+id/bedroomOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/houseTypeOptions"
+        android:layout_below="@id/bedroomLabel"
+        android:weightSum="4"
         android:layout_marginTop="10dp"
         android:padding="10dp">
 
-        <Button
+        <ToggleButton
             android:id="@+id/oneBhkButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="1 BHK"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="1 BHK"
+            android:textOn="1 BHK"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/twoBhkButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="2 BHK"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="2 BHK"
+            android:textOn="2 BHK"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/threeBhkButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="3 BHK"
-            android:layout_marginEnd="8dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="3 BHK"
+            android:textOn="3 BHK"
+            android:background="@drawable/button_selector" />
 
-        <Button
+        <ToggleButton
             android:id="@+id/fourBhkButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="4 BHK"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            android:layout_weight="1"
+            android:textOff="4 BHK"
+            android:textOn="4 BHK"
+            android:background="@drawable/button_selector" />
     </LinearLayout>
 
+    <!-- Price Section -->
     <TextView
         android:id="@+id/priceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price Range"
         android:textSize="16sp"
+        android:textStyle="bold"
+
         android:layout_below="@id/bedroomOptions"
         android:layout_marginTop="10dp"
         android:padding="10dp" />
@@ -219,22 +263,20 @@
             android:text="₹50L"
             android:gravity="center" />
 
-
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="₹1Cr"
             android:gravity="center" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="₹5Cr"
             android:gravity="center" />
-
     </LinearLayout>
-
 
     <Button
         android:id="@+id/submitButton"
@@ -243,6 +285,6 @@
         android:text="Submit"
         android:layout_below="@id/priceRange"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="70dp" />
 
 </RelativeLayout>
