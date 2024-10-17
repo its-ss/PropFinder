@@ -68,8 +68,8 @@
                 android:padding="8dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:src="@drawable/ic_search"
                     android:layout_gravity="center_vertical" />
 
@@ -85,6 +85,7 @@
                     android:background="@android:color/transparent"
                     android:inputType="text"
                     android:singleLine="true"
+
                     android:layout_gravity="center_vertical" />
 
                 <ImageView

@@ -71,7 +71,9 @@
         android:inputType="phone"
         android:padding="10dp"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:maxLength="10"
+        />
 
     <!-- Password Input with Eye Icon -->
     <EditText

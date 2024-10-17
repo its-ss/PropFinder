@@ -97,6 +97,10 @@ public class HomeActivity extends AppCompatActivity {
         // Find the filter icon and set an OnClickListener
         filterIcon = findViewById(R.id.filterIcon);
         filterIcon.setOnClickListener(v -> {
+            deselectOtherButtons(buttonBuy, buttonRent, buttonPG, buttonPlot);
+            buttonAll.setChecked(true);
+            fetchPropertiesRealtime();
+
             Intent intent = new Intent(HomeActivity.this, FilterActivity.class);
             startActivityForResult(intent, REQUEST_FILTER_CODE); // Start the filter activity for result
         });
@@ -327,14 +331,4 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
-    private void updateButtonUI(ToggleButton button) {
-        if (button.isChecked()) {
-            button.setBackgroundResource(R.color.purple_700);
-            button.setTextColor(getResources().getColor(android.R.color.white));
-        } else {
-            button.setBackgroundResource(android.R.color.transparent);
-            button.setTextColor(getResources().getColor(android.R.color.black));
-        }
-    }
 }
