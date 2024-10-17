@@ -21,12 +21,13 @@
 
             <ImageView
                 android:id="@+id/propertyImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
                 android:src="@drawable/ic_property_image"
-                android:contentDescription="Property Image"/>
+                android:contentDescription="Property Image"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true" />
 
         </RelativeLayout>
 
