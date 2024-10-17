@@ -5,22 +5,26 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.propfinder.R;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -32,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView profileImageView;
     private EditText searchEditText; // Search EditText
     private static final int REQUEST_FILTER_CODE = 1; // Unique integer for filter request
-
+    private FloatingActionButton fab;
     // Firestore instance
     private FirebaseFirestore db;
 
@@ -71,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
         propertyList = findViewById(R.id.propertyList);
         propertyList.setLayoutManager(new LinearLayoutManager(this));
         propertyList.setAdapter(propertyAdapter);
+        fab = findViewById(R.id.floatingActionButton);
 
         // Set onClickListener for each ToggleButton
         setToggleButtonBehavior(buttonAll, buttonBuy, buttonRent, buttonPG, buttonPlot);
@@ -109,6 +114,12 @@ public class HomeActivity extends AppCompatActivity {
         profileImageView = findViewById(R.id.ic_profile);
         profileImageView.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
+
+        fab.setOnClickListener(v -> {
+            Toast.makeText(HomeActivity.this, "FAB Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(HomeActivity.this, QueryActivity.class);
             startActivity(intent);
         });
 

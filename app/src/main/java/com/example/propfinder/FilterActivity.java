@@ -99,18 +99,33 @@ public class FilterActivity extends AppCompatActivity {
         setFilterClickListener(threeBhkButton, "Bedroom");
         setFilterClickListener(fourBhkButton, "Bedroom");
 
-        // Submit button logic
+        // Submit button logic with validation
         submitButton.setOnClickListener(v -> {
-            // Create an Intent to send data back to HomeActivity
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("selectedPropertyType", selectedPropertyType);
-            resultIntent.putExtra("selectedHouseType", selectedHouseType);
-            resultIntent.putExtra("selectedBedroom", selectedBedroom);
-            resultIntent.putExtra("selectedPrice", selectedPrice);
-            setResult(RESULT_OK, resultIntent);
-            finish(); // Close the activity and return to HomeActivity
+            if (!isAnyFilterSelected()) {
+                // Show a toast message if no filter is selected
+                Toast.makeText(FilterActivity.this, "Please select at least one filter or set the price.", Toast.LENGTH_SHORT).show();
+            } else {
+                // Create an Intent to send data back to HomeActivity
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("selectedPropertyType", selectedPropertyType);
+                resultIntent.putExtra("selectedHouseType", selectedHouseType);
+                resultIntent.putExtra("selectedBedroom", selectedBedroom);
+                resultIntent.putExtra("selectedPrice", selectedPrice);
+                setResult(RESULT_OK, resultIntent);
+                finish(); // Close the activity and return to HomeActivity
+            }
         });
     }
+
+    // Method to check if at least one toggle button or seek bar is selected
+    private boolean isAnyFilterSelected() {
+        // Check if any filters are selected or the price slider is moved (including zero)
+        return buyButton.isChecked() || rentButton.isChecked() || pgButton.isChecked() || plotButton.isChecked() ||
+                apartmentButton.isChecked() || villaButton.isChecked() || independentHouseButton.isChecked() ||
+                oneBhkButton.isChecked() || twoBhkButton.isChecked() || threeBhkButton.isChecked() || fourBhkButton.isChecked() ||
+                selectedPrice > 0;  // Price can be zero
+    }
+
 
     // Method to set OnClickListener and update selection based on category
     private void setFilterClickListener(final ToggleButton button, final String category) {
@@ -171,7 +186,9 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     private String formatPrice(int price) {
-        if (price >= 10000000) {
+        if (price == 0) {
+            return "All prices";  // Special message for zero price
+        } else if (price >= 10000000) {
             return (price / 10000000) + " Cr";
         } else if (price >= 100000) {
             return (price / 100000) + " L";
@@ -181,4 +198,5 @@ public class FilterActivity extends AppCompatActivity {
             return String.valueOf(price);
         }
     }
+
 }
