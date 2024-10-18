@@ -51,6 +51,19 @@
         android:inputType="textPassword"
         android:padding="12dp" />
 
+    <!-- Forgot Password -->
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:textColor="@color/blue"
+        android:layout_marginTop="8dp"
+
+        android:clickable="true"
+        android:layout_marginLeft="65dp"
+        android:focusable="true" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="179dp"
@@ -71,6 +84,5 @@
         android:textSize="16sp"
         android:clickable="true"
         android:focusable="true" />
-
 
 </LinearLayout>
