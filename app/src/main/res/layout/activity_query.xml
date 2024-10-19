@@ -1,0 +1,118 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Back"
+        android:layout_gravity="start"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    <!-- Title Text -->
+    <TextView
+        android:id="@+id/help_desk_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample Help Desk UI"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Full Name Field -->
+    <EditText
+        android:id="@+id/full_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="12dp"
+        android:padding="10dp">
+
+    </EditText>
+
+
+    <!-- Email Field -->
+    <EditText
+        android:id="@+id/email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="12dp"
+        android:padding="10dp">
+        
+    </EditText>
+
+    <!-- Subject Field -->
+    <EditText
+        android:id="@+id/subject_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Subject"
+        android:inputType="text"
+        android:layout_marginBottom="12dp"
+        android:padding="10dp">
+
+    </EditText>
+
+
+    <!-- Query Details Field -->
+    <EditText
+        android:id="@+id/query_details_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Query details:"
+        android:inputType="textMultiLine"
+        android:minLines="4"
+        android:layout_marginBottom="16dp"
+        android:padding="10dp">
+
+    </EditText>
+
+
+    <!-- Query History Link -->
+    <TextView
+        android:id="@+id/query_history_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Query history"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_gravity="center"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

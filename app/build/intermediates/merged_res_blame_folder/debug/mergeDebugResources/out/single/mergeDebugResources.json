@@ -1,0 +1,242 @@
+[
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_property_image.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_property_image.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_help.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_help.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_filters.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_filters.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_border_background.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/border_background.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_add.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_add.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_money.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_money.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_prop_logo.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/prop_logo.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_login.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/login.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_bookmark.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_bookmark.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_signup.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/signup.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/xml_backup_rules.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_profile.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_profile.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_home.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_home.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/font_comic_bold.ttf.flat",
+        "source": "com.example.propfinder.app-main-46:/font/comic_bold.ttf"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-mdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_button_text_selector.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/button_text_selector.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_arrow_back.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_arrow_back.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_filter.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_filter.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_login.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_admin.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_admin.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_guide.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_guide.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_edit_text_background.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/edit_text_background.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_avatar.jpeg.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/avatar.jpeg"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_home.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/font_comic_regular.ttf.flat",
+        "source": "com.example.propfinder.app-main-46:/font/comic_regular.ttf"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_item_property.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/item_property.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_location.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_location.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_profile_placeholder.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_profile_placeholder.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_signup.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_signup.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_booking.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_booking.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_welcome.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_welcome.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_profile.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_main.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_homes.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_homes.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_query.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_query.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/layout_activity_filter.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/layout/activity_filter.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_bed.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_bed.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_search.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_search.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_welcome.png.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/welcome.png"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-hdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/drawable_button_selector.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/drawable/button_selector.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.example.propfinder.app-debug-44:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.propfinder.app-main-46:/mipmap-anydpi-v26/ic_launcher.xml"
+    }
+]

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="blue">#3F51B5</color>
+    <color name="button_default_color">#FFFFFF</color>
+    <color name="button_selected_color">#673AB7</color>
+    <color name="purple_700">#673AB7</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">PropFinder</string>
+    <string name="back_button">Back</string>
+    <string name="gcm_defaultSenderId" translatable="false">970623527947</string>
+    <string name="google_api_key" translatable="false">AIzaSyDoxLqEWQQlrDhZaWJ8kcu_GLgwAOMxWf4</string>
+    <string name="google_app_id" translatable="false">1:970623527947:android:8f7fb0ad263b91d16dab0e</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDoxLqEWQQlrDhZaWJ8kcu_GLgwAOMxWf4</string>
+    <string name="google_storage_bucket" translatable="false">propfinder-mad3.appspot.com</string>
+    <string name="project_id" translatable="false">propfinder-mad3</string>
+    <style name="Base.Theme.PropFinder" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.PropFinder" parent="Base.Theme.PropFinder"/>
+</resources>
